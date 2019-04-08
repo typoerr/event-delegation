@@ -5,12 +5,16 @@ declare type EventType = keyof HTMLElementEventMap;
 export interface EventDelegatorOptions extends AddEventListenerOptions {
 }
 declare type Opts = EventDelegatorOptions;
+declare type EventHandler<T extends Event = Event> = (ev: T) => void;
 export declare class EventDelegator {
     target: EventTarget;
     options?: Opts;
+    _listenerMap: WeakMap<EventHandler<any>, EventHandler<any>>;
     constructor(target: EventTarget, options?: Opts);
-    on<T extends Event>(type: EventType, sel: string, handler: (ev: T) => void, options?: Opts): () => void;
-    on<T extends Event>(type: string, sel: string, handler: (ev: T) => void, options?: Opts): () => void;
+    on<T extends Event>(type: EventType, sel: string, handler: EventHandler<T>, options?: Opts): () => void;
+    on<T extends Event>(type: string, sel: string, handler: EventHandler<T>, options?: Opts): () => void;
+    off<T extends Event>(type: EventType, handler: EventHandler<T>, options?: Opts): void;
+    off<T extends Event>(type: string, handler: EventHandler<T>, options?: Opts): void;
 }
 export declare const delegate: (el: EventTarget, defaultOptions?: EventDelegatorOptions | undefined) => EventDelegator;
 /**

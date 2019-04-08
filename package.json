@@ -1,0 +1,54 @@
+{
+  "name": "event-delegation",
+  "description": "dom event-delegation",
+  "version": "0.0.1",
+  "author": "nullabletypo",
+  "license": "MIT",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENCE"
+  ],
+  "homepage": "https://github.com/nullabletypo/event-delegation#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nullabletypo/event-delegation.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nullabletypo/event-delegation/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^24.0.11",
+    "@types/node": "^11.13.0",
+    "eslint": "^5.16.0",
+    "eslint-config-nullabletypo": "https://github.com/nullabletypo/eslint-config-nullabletypo",
+    "jest": "^24.7.1",
+    "microbundle": "^0.11.0",
+    "npm-run-all": "^4.1.5",
+    "parcel-bundler": "^1.12.3",
+    "prettier": "^1.16.4",
+    "rimraf": "^2.6.3",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.0.3",
+    "tsconfig-paths": "^3.8.0",
+    "typescript": "^3.4.2"
+  },
+  "scripts": {
+    "example": "parcel example/index.html --port 3000 --out-dir example/dist --cache-dir example/.cache --open",
+    "bundle": "microbundle --raw -f cjs,es",
+    "clean": "rimraf dist",
+    "lint": "eslint src/**/*.ts",
+    "release:github": "git add . && git commit -am $npm_package_version --allow-empty && git tag $npm_package_version && git push && git push --tags",
+    "release": "run-s clean compile test release:github",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "verbose": true
+  }
+}

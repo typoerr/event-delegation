@@ -40,7 +40,9 @@
   },
   "scripts": {
     "example": "parcel example/index.html --port 3000 --out-dir example/dist --cache-dir example/.cache --open",
-    "bundle": "microbundle --raw -f cjs,es",
+    "bundle": "run-p bundle:*",
+    "bundle:core": "microbundle --raw -f cjs,es --no-compress",
+    "bundle:min": "microbundle --raw -f cjs -o dist/index.min.js",
     "clean": "rimraf dist",
     "lint": "eslint src/**/*.ts",
     "release:github": "git add . && git commit -am $npm_package_version --allow-empty && git tag $npm_package_version && git push && git push --tags",

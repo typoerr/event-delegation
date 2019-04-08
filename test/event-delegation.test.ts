@@ -93,7 +93,7 @@ describe('fire', () => {
 })
 
 describe('EventDelegator', () => {
-  test('add event listener / remove event listener', () => {
+  test('#on: add event listener and return remove evnet listener function', () => {
     expect.assertions(4)
 
     const { c } = context()
@@ -102,7 +102,9 @@ describe('EventDelegator', () => {
       expect(ev.currentTarget).toBe(document.body)
       expect(ev.target).toBe(c)
     })
+
     const off = delegator.on('click', '.c', listener)
+
     expect(typeof off === 'function').toBe(true)
 
     // emit
@@ -113,6 +115,25 @@ describe('EventDelegator', () => {
     c.click()
 
     expect(listener).toBeCalledTimes(1)
+  })
+
+  test('#off: remove event listener', () => {
+    const { c } = context()
+    const delegator = new EventDelegator(document.body)
+    const listener = jest.fn()
+    delegator.on('click', '.c', listener)
+    c.click()
+    delegator.off('click', listener)
+    c.click()
+    expect(listener).toBeCalledTimes(1)
+  })
+
+  test('#off: dont throw error when listener is already removed', () => {
+    const delegator = new EventDelegator(document.body)
+    const listener = jest.fn()
+    const off = delegator.on('click', '.c', listener)
+    off()
+    expect(() => delegator.off('click', listener)).not.toThrowError()
   })
 
   test('default listener option', () => {

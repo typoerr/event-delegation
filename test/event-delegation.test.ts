@@ -157,6 +157,16 @@ describe('EventDelegator', () => {
     c.click()
     expect(listener).toBeCalledTimes(1)
   })
+
+  test('add listener to delegator directly', () => {
+    expect.assertions(2)
+    const delegator = new EventDelegator(document, { once: true })
+    const listener = jest.fn((ev: Event) => expect(ev.target).toBe(delegator.target))
+    delegator.on('click', listener)
+    const { c } = context()
+    c.click()
+    expect(listener).toBeCalled()
+  })
 })
 
 describe('delegate', () => {

@@ -14,11 +14,16 @@ export const proxy = (ev: Event, target: any): Event => {
   return new Proxy(ev, { get })
 }
 
-export const listener = (root: Element, sel: string, handler: Function) => (e: Event) => {
-  const target = e.target as Element
-  const matched = closest(root, target, sel)
-  if (matched != null) {
-    handler.call(matched, proxy(e, matched))
+export const listener = (root: Element, sel: string | undefined, handler: Function) => {
+  if (sel === undefined) {
+    return (e: Event) => handler.call(root, proxy(e, root))
+  }
+  return (e: Event) => {
+    const target = e.target as Element
+    const matched = closest(root, target, sel)
+    if (matched != null) {
+      handler.call(matched, proxy(e, matched))
+    }
   }
 }
 
@@ -43,12 +48,15 @@ export class EventDelegator {
   /* eslint-disable no-dupe-class-members */
   on<T extends Event>(type: EventType, sel: string, handler: EventHandler<T>, options?: Opts): () => void
   on<T extends Event>(type: string, sel: string, handler: EventHandler<T>, options?: Opts): () => void
-  on<T extends Event>(type: EventType, sel: string, handler: EventHandler<T>, options?: Opts) {
-    options = { ...this.options, ...options }
+  on<T extends Event>(type: EventType, handler: EventHandler<T>, options?: Opts): () => void
+  on<T extends Event>(type: string, handler: EventHandler<T>, options?: Opts): () => void
+  on(type: string, a: any, b: any, c?: Opts) {
+    const [sel, handler, options] = typeof a === 'string' ? [a, b, c] : [undefined, a, b]
+    const opts: Opts = { ...this.options, ...options }
     const _listener = listener(this.target as Element, sel, handler)
     this._listenerMap.set(handler, _listener)
-    this.target.addEventListener(type, _listener, options)
-    return () => this.target.removeEventListener(type, _listener, options)
+    this.target.addEventListener(type, _listener, opts)
+    return () => this.target.removeEventListener(type, _listener, opts)
   }
   off<T extends Event>(type: EventType, handler: EventHandler<T>, options?: Opts): void
   off<T extends Event>(type: string, handler: EventHandler<T>, options?: Opts): void

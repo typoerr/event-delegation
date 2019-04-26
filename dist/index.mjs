@@ -17,14 +17,20 @@ var proxy = function (ev, target) {
     get: get
   });
 };
-var listener = function (root, sel, handler) { return function (e) {
-  var target = e.target;
-  var matched = closest(root, target, sel);
-
-  if (matched != null) {
-    handler.call(matched, proxy(e, matched));
+var listener = function (root, sel, handler) {
+  if (sel === undefined) {
+    return function (e) { return handler.call(root, proxy(e, root)); };
   }
-}; };
+
+  return function (e) {
+    var target = e.target;
+    var matched = closest(root, target, sel);
+
+    if (matched != null) {
+      handler.call(matched, proxy(e, matched));
+    }
+  };
+};
 var EventDelegator = function EventDelegator(target, options) {
   if ( options === void 0 ) options = {};
 
@@ -35,18 +41,22 @@ var EventDelegator = function EventDelegator(target, options) {
   this.options = options;
 };
 
-EventDelegator.prototype.on = function on (type, sel, handler, options) {
+EventDelegator.prototype.on = function on (type, a, b, c) {
     var this$1 = this;
 
-  options = Object.assign({}, this.options,
+  var ref = typeof a === 'string' ? [a, b, c] : [undefined, a, b];
+    var sel = ref[0];
+    var handler = ref[1];
+    var options = ref[2];
+  var opts = Object.assign({}, this.options,
     options);
 
   var _listener = listener(this.target, sel, handler);
 
   this._listenerMap.set(handler, _listener);
 
-  this.target.addEventListener(type, _listener, options);
-  return function () { return this$1.target.removeEventListener(type, _listener, options); };
+  this.target.addEventListener(type, _listener, opts);
+  return function () { return this$1.target.removeEventListener(type, _listener, opts); };
 };
 
 EventDelegator.prototype.off = function off (type, handler, options) {
@@ -59,21 +69,22 @@ EventDelegator.prototype.off = function off (type, handler, options) {
     this.target.removeEventListener(type, _listener, options);
   }
 };
-var delegate = function (el, defaultOptions) {
-  return new EventDelegator(el, defaultOptions);
+EventDelegator.assignEventTarget = proxy;
+var delegate = function (target, defaultOptions) {
+  return new EventDelegator(target, defaultOptions);
 };
 /**
  * Shorthand of CustomEvent
  */
 
-var fire = function (el, type, detail) {
+var fire = function (target, type, detail) {
   var event = new CustomEvent(type, {
     bubbles: true,
     composed: true,
     cancelable: true,
     detail: detail
   });
-  return el.dispatchEvent(event);
+  return target.dispatchEvent(event);
 };
 
 export { delegate, fire, EventDelegator };

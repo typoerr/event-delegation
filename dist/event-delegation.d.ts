@@ -1,6 +1,6 @@
 export declare const closest: (root: Element, el: Element, sel: string) => Element | null;
 export declare const proxy: (ev: Event, target: any) => Event;
-export declare const listener: (root: Element, sel: string, handler: Function) => (e: Event) => void;
+export declare const listener: (root: Element, sel: string | undefined, handler: Function) => (e: Event) => any;
 declare type EventType = keyof HTMLElementEventMap;
 export interface EventDelegatorOptions extends AddEventListenerOptions {
 }
@@ -13,12 +13,15 @@ export declare class EventDelegator {
     constructor(target: EventTarget, options?: Opts);
     on<T extends Event>(type: EventType, sel: string, handler: EventHandler<T>, options?: Opts): () => void;
     on<T extends Event>(type: string, sel: string, handler: EventHandler<T>, options?: Opts): () => void;
+    on<T extends Event>(type: EventType, handler: EventHandler<T>, options?: Opts): () => void;
+    on<T extends Event>(type: string, handler: EventHandler<T>, options?: Opts): () => void;
     off<T extends Event>(type: EventType, handler: EventHandler<T>, options?: Opts): void;
     off<T extends Event>(type: string, handler: EventHandler<T>, options?: Opts): void;
+    static assignEventTarget: (ev: Event, target: any) => Event;
 }
-export declare const delegate: (el: EventTarget, defaultOptions?: EventDelegatorOptions | undefined) => EventDelegator;
+export declare const delegate: (target: EventTarget, defaultOptions?: EventDelegatorOptions | undefined) => EventDelegator;
 /**
  * Shorthand of CustomEvent
  */
-export declare const fire: (el: EventTarget, type: string, detail?: any) => boolean;
+export declare const fire: (target: EventTarget, type: string, detail?: any) => boolean;
 export {};

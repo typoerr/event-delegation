@@ -1,1 +1,1 @@
-export { delegate, fire, EventDelegator, EventDelegatorOptions } from './event-delegation';
+export { delegate, fire, EventDelegator, EventDelegatorOptions, EventHandler } from './event-delegation';

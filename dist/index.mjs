@@ -44,7 +44,7 @@ var EventDelegator = function EventDelegator(target, options) {
 EventDelegator.prototype.on = function on (type, a, b, c) {
     var this$1 = this;
 
-  var ref = typeof a === 'string' ? [a, b, c] : [undefined, a, b];
+  var ref = typeof a === 'string' ? [a, b, c] : typeof a === 'undefined' ? [undefined, b, c] : [undefined, a, b];
     var sel = ref[0];
     var handler = ref[1];
     var options = ref[2];

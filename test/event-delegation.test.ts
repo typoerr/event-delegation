@@ -9,8 +9,6 @@ beforeAll(() => {
     <div class="a">
       <div class="b">
         <div class="c">child a</div>
-        <div class="c">child b</div>
-        <input class="c" type="text" value="test" />
       </div>
     </div>
   `
@@ -93,7 +91,7 @@ describe('fire', () => {
 })
 
 describe('EventDelegator', () => {
-  test('#on: add event listener and return remove evnet listener function', () => {
+  test('#on - add event listener and return remove evnet listener function', () => {
     expect.assertions(4)
 
     const { c } = context()
@@ -102,11 +100,9 @@ describe('EventDelegator', () => {
       expect(ev.currentTarget).toBe(document.body)
       expect(ev.target).toBe(c)
     })
-
+    // add listener
     const off = delegator.on('click', '.c', listener)
-
     expect(typeof off === 'function').toBe(true)
-
     // emit
     c.click()
     // remove event listener
@@ -117,7 +113,7 @@ describe('EventDelegator', () => {
     expect(listener).toBeCalledTimes(1)
   })
 
-  test('#off: remove event listener', () => {
+  test('#off - remove event listener', () => {
     const { c } = context()
     const delegator = new EventDelegator(document.body)
     const listener = jest.fn()
@@ -128,7 +124,7 @@ describe('EventDelegator', () => {
     expect(listener).toBeCalledTimes(1)
   })
 
-  test('#off: dont throw error when listener is already removed', () => {
+  test('#off - dont throw error when listener is already removed', () => {
     const delegator = new EventDelegator(document.body)
     const listener = jest.fn()
     const off = delegator.on('click', '.c', listener)

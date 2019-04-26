@@ -71,14 +71,14 @@ export class EventDelegator {
   static assignEventTarget = proxy
 }
 
-export const delegate = (el: EventTarget, defaultOptions?: Opts) => {
-  return new EventDelegator(el, defaultOptions)
+export const delegate = (target: EventTarget, defaultOptions?: Opts) => {
+  return new EventDelegator(target, defaultOptions)
 }
 
 /**
  * Shorthand of CustomEvent
  */
-export const fire = (el: EventTarget, type: string, detail?: any) => {
+export const fire = (target: EventTarget, type: string, detail?: any) => {
   const event = new CustomEvent(type, { bubbles: true, composed: true, cancelable: true, detail })
-  return el.dispatchEvent(event)
+  return target.dispatchEvent(event)
 }

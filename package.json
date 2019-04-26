@@ -1,7 +1,7 @@
 {
   "name": "event-delegation",
   "description": "dom event-delegation",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "nullabletypo",
   "license": "MIT",
   "source": "src/index.ts",
@@ -9,6 +9,7 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
+    "rx/dist",
     "dist",
     "README.md",
     "LICENCE"

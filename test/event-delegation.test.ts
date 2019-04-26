@@ -167,6 +167,10 @@ describe('EventDelegator', () => {
     c.click()
     expect(listener).toBeCalled()
   })
+
+  test('.assignEventTarget', () => {
+    expect(EventDelegator.assignEventTarget).toBe(proxy)
+  })
 })
 
 describe('delegate', () => {

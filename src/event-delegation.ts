@@ -67,6 +67,8 @@ export class EventDelegator {
       this.target.removeEventListener(type, _listener, options)
     }
   }
+
+  static assignEventTarget = proxy
 }
 
 export const delegate = (el: EventTarget, defaultOptions?: Opts) => {

@@ -1,0 +1,53 @@
+{
+  "name": "rx-event-delegation",
+  "description": "",
+  "version": "0.0.1",
+  "author": "nullabletypo",
+  "license": "MIT",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENCE"
+  ],
+  "homepage": "https://github.com/nullabletypo/rx-event-delegation#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nullabletypo/rx-event-delegation.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nullabletypo/rx-event-delegation/issues"
+  },
+  "dependencies": {
+    "rxjs": "^6.5.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.11",
+    "@types/node": "^11.13.0",
+    "eslint": "^5.16.0",
+    "eslint-config-nullabletypo": "https://github.com/nullabletypo/eslint-config-nullabletypo",
+    "event-delegation": "https://github.com/nullabletypo/event-delegation",
+    "jest": "^24.7.1",
+    "microbundle": "^0.11.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.16.4",
+    "rimraf": "^2.6.3",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.0.3",
+    "tsconfig-paths": "^3.8.0",
+    "typescript": "^3.4.1"
+  },
+  "peerDependencies": {
+    "event-delegation": "https://github.com/nullabletypo/event-delegation"
+  },
+  "scripts": {
+    "bundle": "run-p bundle:*",
+    "bundle:core": "microbundle --raw -f cjs,es --no-compress",
+    "clean": "run-p clean:**",
+    "clean:dist": "rimraf dist",
+    "lint": "eslint src/**/*.ts"
+  }
+}

@@ -124,3 +124,5 @@ typings/
 ### project ###
 test/compiled
 playground.*
+example/dist
+example/.cache

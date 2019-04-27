@@ -1,4 +1,5 @@
-import { fromEventPattern } from 'rxjs';
+import { fromEventPattern, queueScheduler } from 'rxjs';
+import { share, observeOn } from 'rxjs/operators';
 import { delegate } from 'event-delegation';
 
 function delegate$1(target, options) {
@@ -15,7 +16,7 @@ function delegate$1(target, options) {
 
     var remove = function (next) { return del.off(type, next, opts); };
 
-    return fromEventPattern(add, remove);
+    return fromEventPattern(add, remove).pipe(observeOn(queueScheduler), share());
   }
 }
 

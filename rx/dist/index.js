@@ -1,4 +1,5 @@
 var rxjs = require('rxjs');
+var operators = require('rxjs/operators');
 var eventDelegation = require('event-delegation');
 
 function delegate(target, options) {
@@ -15,7 +16,7 @@ function delegate(target, options) {
 
     var remove = function (next) { return del.off(type, next, opts); };
 
-    return rxjs.fromEventPattern(add, remove);
+    return rxjs.fromEventPattern(add, remove).pipe(operators.observeOn(rxjs.queueScheduler), operators.share());
   }
 }
 

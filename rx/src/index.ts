@@ -1,4 +1,5 @@
-import { fromEventPattern, Observable } from 'rxjs'
+import { fromEventPattern, Observable, queueScheduler } from 'rxjs'
+import { share, observeOn } from 'rxjs/operators'
 import { delegate as _delegate, EventDelegatorOptions as Opts, EventHandler } from 'event-delegation'
 
 type Type = keyof HTMLElementEventMap
@@ -15,6 +16,9 @@ export function delegate(target: EventTarget, options?: Opts) {
     const [sel, opts] = typeof a === 'string' ? [a, b] : [undefined, b]
     const add = (next: EventHandler) => del.on(type, sel, next, opts)
     const remove = (next: EventHandler) => del.off(type, next, opts)
-    return fromEventPattern<T>(add, remove)
+    return fromEventPattern<T>(add, remove).pipe(
+      observeOn(queueScheduler),
+      share(),
+    )
   }
 }

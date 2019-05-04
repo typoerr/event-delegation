@@ -49,10 +49,9 @@
     "clean": "run-p clean:**",
     "clean:dist": "rimraf dist",
     "lint": "eslint src/**/*.ts",
-    "prepublishOnly": "run-s compile",
     "postpublish": "run-s clean",
     "publish:npm": "yarn publish",
-    "release": "run-s test publish:npm",
+    "release": "run-s test compile publish:npm",
     "test": "jest"
   },
   "jest": {

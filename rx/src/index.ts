@@ -4,15 +4,16 @@ import { delegate as _delegate, EventDelegatorOptions as Opts, EventHandler } fr
 
 type Type = keyof HTMLElementEventMap
 
-export function delegate(target: EventTarget, options?: Opts) {
-  const del = _delegate(target, options)
-  return on
+export interface EventSelector {
+  <T extends Event>(type: Type, opts?: Opts): Observable<T>
+  <T extends Event>(type: string, opts?: Opts): Observable<T>
+  <T extends Event>(type: Type, sel: string, opts?: Opts): Observable<T>
+  <T extends Event>(type: string, sel: string, opts?: Opts): Observable<T>
+}
 
-  function on<T extends Event>(type: Type, opts?: Opts): Observable<T>
-  function on<T extends Event>(type: string, opts?: Opts): Observable<T>
-  function on<T extends Event>(type: Type, sel: string, opts?: Opts): Observable<T>
-  function on<T extends Event>(type: string, sel: string, opts?: Opts): Observable<T>
-  function on<T extends Event>(type: string, a: any, b?: any) {
+export function delegate(target: EventTarget, options?: Opts): EventSelector {
+  const del = _delegate(target, options)
+  return function select<T extends Event>(type: string, a: any, b?: any) {
     const [sel, opts] = typeof a === 'string' ? [a, b] : [undefined, b]
     const add = (next: EventHandler) => del.on(type, sel, next, opts)
     const remove = (next: EventHandler) => del.off(type, next, opts)

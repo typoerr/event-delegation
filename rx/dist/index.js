@@ -5,9 +5,7 @@ var eventDelegation = require('event-delegation');
 function delegate(target, options) {
   var del = eventDelegation.delegate(target, options);
 
-  return on;
-
-  function on(type, a, b) {
+  return function select(type, a, b) {
     var ref = typeof a === 'string' ? [a, b] : [undefined, b];
     var sel = ref[0];
     var opts = ref[1];
@@ -17,7 +15,7 @@ function delegate(target, options) {
     var remove = function (next) { return del.off(type, next, opts); };
 
     return rxjs.fromEventPattern(add, remove).pipe(operators.observeOn(rxjs.queueScheduler), operators.share());
-  }
+  };
 }
 
 exports.delegate = delegate;

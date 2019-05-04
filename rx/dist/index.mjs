@@ -5,9 +5,7 @@ import { delegate } from 'event-delegation';
 function delegate$1(target, options) {
   var del = delegate(target, options);
 
-  return on;
-
-  function on(type, a, b) {
+  return function select(type, a, b) {
     var ref = typeof a === 'string' ? [a, b] : [undefined, b];
     var sel = ref[0];
     var opts = ref[1];
@@ -17,7 +15,7 @@ function delegate$1(target, options) {
     var remove = function (next) { return del.off(type, next, opts); };
 
     return fromEventPattern(add, remove).pipe(observeOn(queueScheduler), share());
-  }
+  };
 }
 
 export { delegate$1 as delegate };

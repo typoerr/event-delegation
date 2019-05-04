@@ -1,6 +1,6 @@
 import { fromEventPattern, Observable, queueScheduler } from 'rxjs'
 import { share, observeOn } from 'rxjs/operators'
-import { delegate as _delegate, EventDelegatorOptions as Opts, EventHandler } from 'event-delegation'
+import { delegate as _delegate, EventDelegatorOptions as Opts, EventHandler } from './event-delegation'
 
 type Type = keyof HTMLElementEventMap
 

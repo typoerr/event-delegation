@@ -1,13 +1,12 @@
 {
-  "name": "@types/event-delegation",
+  "name": "@typoerr/event-delegation",
   "description": "dom event-delegation",
   "version": "0.0.9",
   "author": "typoerr",
   "license": "MIT",
-  "source": "src/index.ts",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
   "files": [
     "rx",
     "dist",
@@ -23,6 +22,9 @@
     "url": "https://github.com/typoerr/event-delegation/issues"
   },
   "dependencies": {},
+  "peerDependencies": {
+    "rxjs": "^6.5.1"
+  },
   "devDependencies": {
     "@types/jest": "^24.0.11",
     "@types/node": "^11.13.7",
@@ -33,6 +35,7 @@
     "parcel-bundler": "^1.12.3",
     "prettier": "^1.17.0",
     "rimraf": "^2.6.3",
+    "rxjs": "^6.5.1",
     "ts-jest": "^24.0.2",
     "ts-node": "^8.1.0",
     "tsconfig-paths": "^3.8.0",
@@ -40,13 +43,11 @@
   },
   "scripts": {
     "example": "parcel example/index.html --port 3000 --out-dir example/dist --cache-dir example/.cache --open",
-    "bundle": "run-p bundle:*",
-    "bundle:core": "microbundle --raw -f cjs,es --no-compress",
-    "bundle:min": "microbundle --raw -f cjs -o dist/index.min.js",
-    "bundle:rx": "cd rx && yarn run bundle",
+    "compile": "run-p compile:*",
+    "compile:esm": "tsc --outDir dist/esm --module esnext",
+    "compile:cjs": "tsc --outDir dist/cjs --module commonjs",
     "clean": "run-p clean:**",
     "clean:dist": "rimraf dist",
-    "clean:rx": "rimraf rx/dist",
     "lint": "eslint src/**/*.ts",
     "release:github": "git add . && git commit -am $npm_package_version --allow-empty && git tag $npm_package_version && git push && git push --tags",
     "release": "run-s test clean bundle release:github",

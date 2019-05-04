@@ -1,4 +1,4 @@
-import { delegate } from '../src'
+import { delegate } from '../src/rx-event-delegation'
 import { tap, map, take, toArray } from 'rxjs/operators'
 
 beforeAll(() => {
@@ -16,10 +16,10 @@ beforeAll(() => {
 
 test('delegate', done => {
   const c = document.querySelector('.c') as HTMLElement
-  const on = delegate(document.body, { capture: true })
+  const select = delegate(document.body, { capture: true })
   const mock = jest.fn((ev: Event) => ev)
 
-  const event$ = on('click', '.c').pipe(
+  const event$ = select('click', '.c').pipe(
     map(mock),
     tap(e => expect(e.target).toBe(c)),
     take(1),

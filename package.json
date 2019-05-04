@@ -1,7 +1,7 @@
 {
   "name": "@typoerr/event-delegation",
   "description": "dom event-delegation",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "author": "typoerr",
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -49,8 +49,10 @@
     "clean": "run-p clean:**",
     "clean:dist": "rimraf dist",
     "lint": "eslint src/**/*.ts",
-    "release:github": "git add . && git commit -am $npm_package_version --allow-empty && git tag $npm_package_version && git push && git push --tags",
-    "release": "run-s test clean bundle release:github",
+    "prepublishOnly": "run-s compile",
+    "postpublish": "run-s clean",
+    "publish:npm": "yarn publish",
+    "release": "run-s test publish:npm",
     "test": "jest"
   },
   "jest": {
@@ -61,5 +63,8 @@
         "tsConfig": "test/tsconfig.json"
       }
     }
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

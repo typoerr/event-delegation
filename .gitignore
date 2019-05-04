@@ -126,3 +126,4 @@ test/compiled
 playground.*
 example/dist
 example/.cache
+dist

@@ -1,6 +1,9 @@
 {
-  "name": "@typoerr/rx-event-delegation",
-  "main": "../dist/cjs/rx-event-delegation.js",
-  "module": "../dist/esm/rx-event-delegation.js",
-  "types": "../dist/esm/rx-event-delegation.d.ts"
+  "name": "@typoerr/event-delegation-rx",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "peerDependencies": {
+    "@typoerr/event-delegation": "^0.0.10"
+  }
 }

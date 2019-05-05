@@ -10,6 +10,7 @@
   "files": [
     "rx",
     "dist",
+    "src",
     "README.md",
     "LICENCE"
   ],

@@ -1,4 +1,4 @@
-import { delegate } from '../rx/index'
+import { delegate } from '../rx/src/index'
 import { tap, map, take, toArray } from 'rxjs/operators'
 
 beforeAll(() => {

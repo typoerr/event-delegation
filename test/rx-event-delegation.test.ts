@@ -15,23 +15,25 @@ beforeAll(() => {
 })
 
 test('delegate', done => {
+  expect.assertions(3)
   const c = document.querySelector('.c') as HTMLElement
-  const select = delegate(document.body, { capture: true })
+  const select = delegate(document.body)
   const mock = jest.fn((ev: Event) => ev)
 
-  const event$ = select('click', '.c').pipe(
-    map(mock),
-    tap(e => expect(e.target).toBe(c)),
-    take(1),
-    toArray(),
-  )
+  select('click', '.c')
+    .pipe(
+      map(mock),
+      tap(e => expect(e.target).toBe(c)),
+      take(1),
+      toArray(),
+    )
+    .toPromise()
+    .then(arr => {
+      expect(mock).toBeCalledTimes(1)
+      expect(arr.length).toBe(1)
+      done()
+    })
 
-  event$.toPromise().then(arr => {
-    expect(mock).toBeCalledTimes(1)
-    expect(arr.length).toBe(1)
-    done()
-  })
-
-  c.click()
-  c.click()
+  c.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+  c.dispatchEvent(new MouseEvent('click', { bubbles: true }))
 })

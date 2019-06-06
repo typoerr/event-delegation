@@ -24,23 +24,23 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "rxjs": "^6.5.1"
+    "rxjs": "^6.5.2"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.11",
-    "@types/node": "^11.13.7",
+    "@types/jest": "^24.0.13",
+    "@types/node": "^12.0.5",
     "@typoerr/eslint-config": "^0.0.9",
     "eslint": "^5.16.0",
-    "jest": "^24.7.1",
+    "jest": "^24.8.0",
     "npm-run-all": "^4.1.5",
     "parcel-bundler": "^1.12.3",
-    "prettier": "^1.17.0",
+    "prettier": "^1.17.1",
     "rimraf": "^2.6.3",
-    "rxjs": "^6.5.1",
+    "rxjs": "^6.5.2",
     "ts-jest": "^24.0.2",
-    "ts-node": "^8.1.0",
+    "ts-node": "^8.2.0",
     "tsconfig-paths": "^3.8.0",
-    "typescript": "^3.4.5"
+    "typescript": "^3.5.1"
   },
   "scripts": {
     "example": "parcel example/index.html --port 3000 --out-dir example/dist --cache-dir example/.cache --open",

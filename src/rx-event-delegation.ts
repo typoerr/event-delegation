@@ -1,5 +1,5 @@
 import { fromEventPattern, Observable } from 'rxjs'
-import { delegate as _delegate, EventDelegatorOptions as Opts, EventHandler } from '@typoerr/event-delegation'
+import { delegate as _delegate, EventDelegatorOptions as Opts, EventHandler } from './event-delegation'
 
 type Type = keyof HTMLElementEventMap
 

@@ -27,20 +27,20 @@
     "rxjs": "^6.5.2"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.13",
-    "@types/node": "^12.0.5",
-    "@typoerr/eslint-config": "^0.0.9",
-    "eslint": "^5.16.0",
-    "jest": "^24.8.0",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.2",
+    "@typoerr/eslint-config": "^0.0.14",
+    "eslint": "^6.2.1",
+    "jest": "^24.9.0",
     "npm-run-all": "^4.1.5",
     "parcel-bundler": "^1.12.3",
-    "prettier": "^1.17.1",
-    "rimraf": "^2.6.3",
+    "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
     "rxjs": "^6.5.2",
     "ts-jest": "^24.0.2",
-    "ts-node": "^8.2.0",
+    "ts-node": "^8.3.0",
     "tsconfig-paths": "^3.8.0",
-    "typescript": "^3.5.1"
+    "typescript": "^3.5.3"
   },
   "scripts": {
     "example": "parcel example/index.html --port 3000 --out-dir example/dist --cache-dir example/.cache --open",

@@ -24,7 +24,7 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "rxjs": "^6.5.2"
+    "rxjs": ">=6"
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",

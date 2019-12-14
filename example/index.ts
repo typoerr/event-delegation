@@ -1,6 +1,7 @@
-import { delegate } from '../src'
+/*  eslint-disable no-console */
+import { EventDelegator } from '../src'
 
-const del = delegate(window, { capture: true })
+const del = new EventDelegator(window, { capture: true })
 
 del.on('DOMContentLoaded', ev => {
   console.log(ev)

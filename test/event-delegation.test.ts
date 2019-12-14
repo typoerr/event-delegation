@@ -1,4 +1,4 @@
-import { closest, proxy, EventDelegator, fire, delegate } from '../src/event-delegation'
+import { closest, proxy, EventDelegator, fire } from '../src/event-delegation'
 
 beforeAll(() => {
   const html = String.raw
@@ -176,11 +176,5 @@ describe('EventDelegator', () => {
 
   test('.assignEventTarget', () => {
     expect(EventDelegator.assignEventTarget).toBe(proxy)
-  })
-})
-
-describe('delegate', () => {
-  test('return EventDelegator', () => {
-    expect(delegate(document)).toBeInstanceOf(EventDelegator)
   })
 })

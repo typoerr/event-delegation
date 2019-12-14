@@ -73,10 +73,6 @@ export class EventDelegator {
   static assignEventTarget = proxy
 }
 
-export const delegate = (target: EventTarget, defaultOptions?: Opts) => {
-  return new EventDelegator(target, defaultOptions)
-}
-
 /**
  * Shorthand of CustomEvent
  */

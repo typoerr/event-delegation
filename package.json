@@ -49,7 +49,7 @@
     "compile:dist:cjs": "tsc --outDir dist/cjs --module commonjs",
     "clean": "run-p -l clean:**",
     "clean:dist": "rimraf dist",
-    "lint": "eslint src/**/*.ts",
+    "lint": "eslint src/**/*.ts test/**/*.ts",
     "postpublish": "run-s clean",
     "publish:npm": "yarn publish",
     "release": "run-s test compile publish:npm",

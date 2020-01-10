@@ -1,16 +1,16 @@
 import { fromEventPattern, Observable } from 'rxjs'
-import { EventDelegator, EventDelegatorOptions as Opts, EventHandler } from './event-delegation'
+import { EventDelegator, EventDelegatorOptions, EventHandler } from './event-delegation'
 
 type Type = keyof HTMLElementEventMap
 
 export interface EventSelector {
-  <T extends Event>(type: Type, opts?: Opts): Observable<T>
-  <T extends Event>(type: string, opts?: Opts): Observable<T>
-  <T extends Event>(type: Type, sel: string, opts?: Opts): Observable<T>
-  <T extends Event>(type: string, sel: string, opts?: Opts): Observable<T>
+  <T extends Event>(type: Type, opts?: EventDelegatorOptions): Observable<T>
+  <T extends Event>(type: string, opts?: EventDelegatorOptions): Observable<T>
+  <T extends Event>(type: Type, sel: string, opts?: EventDelegatorOptions): Observable<T>
+  <T extends Event>(type: string, sel: string, opts?: EventDelegatorOptions): Observable<T>
 }
 
-export function delegate(target: EventTarget, options?: Opts): EventSelector {
+export function delegate(target: EventTarget, options?: EventDelegatorOptions): EventSelector {
   const del = new EventDelegator(target, options)
   return function select<T extends Event>(type: string, a: any, b?: any) {
     const [sel, opts] = typeof a === 'string' ? [a, b] : [undefined, b]

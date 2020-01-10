@@ -31,38 +31,46 @@ type EventType = keyof HTMLElementEventMap
 
 export interface EventDelegatorOptions extends AddEventListenerOptions {}
 
-type Opts = EventDelegatorOptions
-
 export type EventHandler<T extends Event = Event> = (ev: T) => void
 
 export class EventDelegator {
   target: EventTarget
-  options?: Opts = {}
+  options?: EventDelegatorOptions = {}
   // [origin handler, wrapped handler]
   _listenerMap = new WeakMap<EventHandler<any>, EventHandler<any>>()
 
-  constructor(target: EventTarget, options: Opts = {}) {
+  constructor(target: EventTarget, options: EventDelegatorOptions = {}) {
     this.target = target
     this.options = options
   }
   /* eslint-disable no-dupe-class-members */
-  on<T extends Event>(type: EventType, handler: EventHandler<T>, options?: Opts): () => void
-  on<T extends Event>(type: string, handler: EventHandler<T>, options?: Opts): () => void
-  on<T extends Event>(type: EventType, sel: string | undefined, handler: EventHandler<T>, options?: Opts): () => void
-  on<T extends Event>(type: string, sel: string | undefined, handler: EventHandler<T>, options?: Opts): () => void
-  on(type: string, a: any, b: any, c?: Opts) {
+  on<T extends Event>(type: EventType, handler: EventHandler<T>, options?: EventDelegatorOptions): () => void
+  on<T extends Event>(type: string, handler: EventHandler<T>, options?: EventDelegatorOptions): () => void
+  on<T extends Event>(
+    type: EventType,
+    sel: string | undefined,
+    handler: EventHandler<T>,
+    options?: EventDelegatorOptions,
+  ): () => void
+  on<T extends Event>(
+    type: string,
+    sel: string | undefined,
+    handler: EventHandler<T>,
+    options?: EventDelegatorOptions,
+  ): () => void
+  on(type: string, a: any, b: any, c?: EventDelegatorOptions) {
     const [sel, handler, options] =
       typeof a === 'string' ? [a, b, c] : typeof a === 'undefined' ? [undefined, b, c] : [undefined, a, b]
-    const opts: Opts = { ...this.options, ...options }
+    const opts: EventDelegatorOptions = { ...this.options, ...options }
     const _listener = listener(this.target as Element, sel, handler)
     this._listenerMap.set(handler, _listener)
     this.target.addEventListener(type, _listener, opts)
     return () => this.target.removeEventListener(type, _listener, opts)
   }
 
-  off<T extends Event>(type: EventType, handler: EventHandler<T>, options?: Opts): void
-  off<T extends Event>(type: string, handler: EventHandler<T>, options?: Opts): void
-  off<T extends Event>(type: EventType, handler: EventHandler<T>, options?: Opts) {
+  off<T extends Event>(type: EventType, handler: EventHandler<T>, options?: EventDelegatorOptions): void
+  off<T extends Event>(type: string, handler: EventHandler<T>, options?: EventDelegatorOptions): void
+  off<T extends Event>(type: EventType, handler: EventHandler<T>, options?: EventDelegatorOptions) {
     options = { ...this.options, ...options }
     const _listener = this._listenerMap.get(handler)
     if (_listener != null) {

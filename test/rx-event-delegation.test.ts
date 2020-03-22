@@ -14,7 +14,7 @@ beforeAll(() => {
   document.body.appendChild(template.content)
 })
 
-test('delegate', done => {
+test('delegate', (done) => {
   expect.assertions(3)
   const c = document.querySelector('.c') as HTMLElement
   const select = delegate(document.body)
@@ -23,12 +23,12 @@ test('delegate', done => {
   select('click', '.c')
     .pipe(
       map(mock),
-      tap(e => expect(e.target).toBe(c)),
+      tap((e) => expect(e.target).toBe(c)),
       take(1),
       toArray(),
     )
     .toPromise()
-    .then(arr => {
+    .then((arr) => {
       expect(mock).toBeCalledTimes(1)
       expect(arr.length).toBe(1)
       done()

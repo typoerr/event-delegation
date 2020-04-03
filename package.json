@@ -1,7 +1,7 @@
 {
   "name": "@typoerr/event-delegation",
   "description": "dom event-delegation",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "author": "typoerr",
   "license": "MIT",
   "main": "dist/cjs/index.js",

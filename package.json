@@ -1,7 +1,7 @@
 {
   "name": "@typoerr/event-delegation",
   "description": "dom event-delegation",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "author": "typoerr",
   "license": "MIT",
   "main": "./dist/core/index.js",
@@ -48,7 +48,7 @@
     "compile-tsc": "tsc -b -v",
     "clean": "run-p -l clean:**",
     "clean:dist": "rimraf dist",
-    "lint": "eslint src/**/*.ts test/**/*.ts",
+    "lint": "eslint packages/**/*.ts",
     "publish-npm": "yarn publish",
     "git:push": "git push -u origin master",
     "git:tag": "git push --tag",

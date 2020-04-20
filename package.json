@@ -51,7 +51,9 @@
     "clean:dist": "rimraf dist",
     "lint": "eslint src/**/*.ts test/**/*.ts",
     "publish-npm": "yarn publish",
-    "release": "run-s lint test compile publish-npm clean",
+    "git:push": "git push -u origin master",
+    "git:tag": "git push --tag",
+    "release": "run-s lint test compile publish-npm clean git:**",
     "test": "jest"
   },
   "publishConfig": {

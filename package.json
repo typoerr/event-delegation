@@ -45,7 +45,6 @@
   "scripts": {
     "example": "parcel example/index.html --port 3000 --out-dir example/dist --cache-dir example/.cache --open",
     "build": "gulp build",
-    "compile": "run-s clean build",
     "compile-tsc": "tsc -b -v",
     "clean": "run-p -l clean:**",
     "clean:dist": "rimraf dist",
@@ -53,7 +52,7 @@
     "publish-npm": "yarn publish",
     "git:push": "git push -u origin master",
     "git:tag": "git push --tag",
-    "release": "run-s lint test compile publish-npm clean git:**",
+    "release": "run-s clean lint test build publish-npm clean git:**",
     "test": "jest"
   },
   "publishConfig": {

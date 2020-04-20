@@ -2,8 +2,5 @@
   "extends": [
     "@typoerr/eslint-config",
     "@typoerr/eslint-config/+typescript"
-  ],
-  "ignorePatterns": [
-    "rx"
   ]
 }

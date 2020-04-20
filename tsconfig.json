@@ -1,24 +1,11 @@
 {
-  "compilerOptions": {
-    "module": "esnext",
-    "moduleResolution": "node",
-    "target": "es6",
-    "lib": ["es6", "dom"],
-    "declaration": true,
-    "outDir": "dist",
-    "sourceMap": true,
-    "esModuleInterop": true,
-    "strict": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noEmitOnError": true,
-    "forceConsistentCasingInFileNames": true,
-    "skipDefaultLibCheck": true,
-    "pretty": true,
-    "types": ["node"]
-  },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"]
+  "files": [],
+  "references": [
+    {
+      "path": "./packages/core"
+    },
+    {
+      "path": "./packages/rx"
+    }
+  ]
 }

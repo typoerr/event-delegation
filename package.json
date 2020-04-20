@@ -4,9 +4,9 @@
   "version": "0.1.11",
   "author": "typoerr",
   "license": "MIT",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/esm/index.d.ts",
+  "main": "./dist/core/index.js",
+  "module": "./dist/core/index.module.js",
+  "types": "./dist/core/index.d.ts",
   "files": [
     "rx",
     "dist",
@@ -22,45 +22,37 @@
   "bugs": {
     "url": "https://github.com/typoerr/event-delegation/issues"
   },
-  "dependencies": {
-    "rxjs": "^6.5.5"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@types/jest": "^25.1.5",
-    "@types/node": "^13.11.0",
-    "@typoerr/eslint-config": "^0.0.27",
+    "@rollup/plugin-node-resolve": "^7.1.3",
+    "@rollup/plugin-typescript": "^4.1.1",
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.13.0",
+    "@typoerr/eslint-config": "^0.0.29",
     "eslint": "^6.8.0",
-    "jest": "^25.2.6",
+    "gulp": "^4.0.2",
+    "jest": "^25.3.0",
     "npm-run-all": "^4.1.5",
     "parcel-bundler": "^1.12.4",
-    "prettier": "^2.0.2",
+    "prettier": "^2.0.4",
     "rimraf": "^3.0.2",
-    "ts-jest": "^25.3.0",
-    "ts-node": "^8.8.1",
+    "rollup": "^2.6.1",
+    "ts-jest": "^25.4.0",
+    "ts-node": "^8.8.2",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.8.3"
   },
   "scripts": {
     "example": "parcel example/index.html --port 3000 --out-dir example/dist --cache-dir example/.cache --open",
-    "compile": "run-p -l compile:**",
-    "compile:dist:esm": "tsc --outDir dist/esm --module esnext",
-    "compile:dist:cjs": "tsc --outDir dist/cjs --module commonjs",
+    "build": "gulp build",
+    "compile": "run-s clean build",
+    "compile-tsc": "tsc -b -v",
     "clean": "run-p -l clean:**",
     "clean:dist": "rimraf dist",
     "lint": "eslint src/**/*.ts test/**/*.ts",
-    "postpublish": "run-s clean",
-    "publish:npm": "yarn publish",
-    "release": "run-s lint test compile publish:npm",
+    "publish-npm": "yarn publish",
+    "release": "run-s lint test compile publish-npm clean",
     "test": "jest"
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "verbose": true,
-    "globals": {
-      "ts-jest": {
-        "tsConfig": "test/tsconfig.json"
-      }
-    }
   },
   "publishConfig": {
     "access": "public"

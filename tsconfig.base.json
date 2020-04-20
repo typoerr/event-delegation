@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "target": "ES2015",
+    "lib": [
+      "ES2019",
+      "DOM"
+    ],
+    "outDir": "dist",
+    "composite": true,
+    "declaration": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noEmitOnError": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipDefaultLibCheck": true,
+    "pretty": true,
+    "types": [
+      "node",
+      "jest"
+    ]
+  },
+  "include": [
+    "packages/**/*.ts",
+  ],
+  "exclude": [
+    "**/node_modules/**"
+  ]
+}

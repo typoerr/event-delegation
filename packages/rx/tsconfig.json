@@ -1,0 +1,23 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../../dist/rx",
+    "baseUrl": ".",
+    "paths": {
+      "@typoerr/event-delegation": [
+        "../core/index.ts"
+      ]
+    },
+  },
+  "include": [
+    "./**/*.ts",
+  ],
+  "exclude": [
+    "**/node_modules/**"
+  ],
+  "references": [
+    {
+      "path": "../core"
+    }
+  ]
+}

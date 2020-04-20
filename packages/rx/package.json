@@ -1,0 +1,14 @@
+{
+  "name": "@typoerr/event-delegation-rx",
+  "main": "dist/index.js",
+  "module": "dist/index.module.js",
+  "unpkg": "dist/index.umd.js",
+  "types": "dist/index.d.ts",
+  "peerDependencies": {
+    "@typoerr/event-delegation": "*",
+    "rxjs": "^6.5.5"
+  },
+  "devDependencies": {
+    "rxjs": "^6.5.5"
+  }
+}

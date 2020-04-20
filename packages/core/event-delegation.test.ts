@@ -1,4 +1,4 @@
-import { closest, proxy, EventDelegator, fire } from '../src/event-delegation'
+import { closest, proxy, EventDelegator, fire } from './event-delegation'
 
 beforeAll(() => {
   const html = String.raw

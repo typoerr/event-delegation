@@ -14,7 +14,7 @@ export const proxy = (ev: Event, target: any): Event => {
   return new Proxy(ev, { get })
 }
 
-export const listener = (root: Element, sel: string | undefined, handler: Function) => {
+export const listener = (root: Element, sel: string | undefined, handler: (...args: unknown[]) => unknown) => {
   if (sel === undefined) {
     return (e: Event) => handler.call(root, proxy(e, root))
   }

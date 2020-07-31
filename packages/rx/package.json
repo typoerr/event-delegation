@@ -6,9 +6,9 @@
   "types": "dist/index.d.ts",
   "peerDependencies": {
     "@typoerr/event-delegation": "*",
-    "rxjs": "^6.5.5"
+    "rxjs": "^6.6.0"
   },
   "devDependencies": {
-    "rxjs": "^6.5.5"
+    "rxjs": "^6.6.0"
   }
 }

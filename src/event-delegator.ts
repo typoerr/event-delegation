@@ -77,8 +77,6 @@ export class EventDelegator {
       this.target.removeEventListener(type, _listener, options)
     }
   }
-
-  static assignEventTarget = proxy
 }
 
 /**

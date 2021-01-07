@@ -1,6 +1,0 @@
-{
-  "name": "@typoerr/event-delegation-rx",
-  "main": "../dist/rx/index.js",
-  "module": "../dist/rx/index.module.js",
-  "types": "../dist/rx/index.d.ts"
-}

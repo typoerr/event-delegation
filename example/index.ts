@@ -1,5 +1,5 @@
 /*  eslint-disable no-console */
-import { EventDelegator } from '../packages/core'
+import { EventDelegator } from '../src/index'
 
 const del = new EventDelegator(window, { capture: true })
 
@@ -15,13 +15,13 @@ del.on('click', (ev) => {
 })
 
 del.on('click', '#b', (ev: MouseEvent) => {
-  const el = document.getElementById('message')
+  const el = document.getElementById('message') as HTMLElement
   console.log('[#b] ', ev)
   el.innerText = 'Hello'
 })
 
 del.on('click', '#c', (ev: MouseEvent) => {
-  const el = document.getElementById('message')
+  const el = document.getElementById('message') as HTMLElement
   console.log('[#c] ', ev)
   el.innerText = 'World'
 })

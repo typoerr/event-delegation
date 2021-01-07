@@ -1,11 +1,34 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./packages/core"
-    },
-    {
-      "path": "./packages/rx"
-    }
+  "compilerOptions": {
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "target": "ES2015",
+    "lib": [
+      "ES2019",
+      "DOM"
+    ],
+    "declaration": true,
+    "outDir": "dist",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noEmitOnError": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipDefaultLibCheck": true,
+    "pretty": true,
+    "types": [
+      "node"
+    ]
+  },
+  "include": [
+    "src/**/*.ts",
+    "test/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }
